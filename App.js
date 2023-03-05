@@ -6,12 +6,7 @@ import MapScreen from './src/screens/MapScreen';
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    <View style={styles.container}>
-      <Text>hello</Text>
-      <StatusBar style="auto" />
-    </View>
-    // </NavigationContainer>
+    <MapScreen />
   );
 }
 
