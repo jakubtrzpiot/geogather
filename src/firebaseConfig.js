@@ -1,4 +1,11 @@
 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { getFirestore,  collection, addDoc, getDocs, } from 'firebase/database';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyDmQDDgAN_jFn_VPUKpHpr1g01b5s_Dh4E',
   authDomain: 'geogather-kosciuszkon.firebaseapp.com',
@@ -8,3 +15,18 @@ const firebaseConfig = {
   appId: '1:131987645086:web:a84b45b8b92fcc5292918f',
 };
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+// For more information on how to access Firebase in your project,
+// see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
+
+export {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  db,
+  collection,
+  addDoc,
+  getDocs,
+};
