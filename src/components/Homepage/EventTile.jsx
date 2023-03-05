@@ -23,7 +23,7 @@ const EventTile = ({ time, date, description, iconName }) => {
       marginHorizontal:20,
       paddingVertical: 10,
       paddingHorizontal: 20,
-      backgroundColor: '  ',
+      backgroundColor: 'white',
       borderRadius: 20,
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 2 },
