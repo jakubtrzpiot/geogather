@@ -9,7 +9,25 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Check if a user is signed in
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+  }, []);
+
+  const handleLogout = () => {
+    firebase.auth().signOut();
+  };
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">

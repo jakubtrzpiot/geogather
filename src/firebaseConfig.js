@@ -1,4 +1,3 @@
-import { initializeApp } from 'firebase/app';
 
 import {
   getAuth,
@@ -7,7 +6,6 @@ import {
 } from 'firebase/auth';
 import { getFirestore,  collection, addDoc, getDocs, } from 'firebase/database';
 
-// Initialize Firebase
 const firebaseConfig = {
   apiKey: 'AIzaSyDmQDDgAN_jFn_VPUKpHpr1g01b5s_Dh4E',
   authDomain: 'geogather-kosciuszkon.firebaseapp.com',
