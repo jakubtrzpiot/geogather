@@ -3,6 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { Icon } from '@rneui/themed';
 
 const MapSearch = () => {
   const [location, setLocation] = useState(null);
@@ -36,34 +37,33 @@ const MapSearch = () => {
           initialRegion={{
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: 0.00922,
+            longitudeDelta: 0.00421,
           }}
           region={
             searchLocation
               ? {
                   latitude: searchLocation.latitude,
                   longitude: searchLocation.longitude,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421,
+                  latitudeDelta: 0.00922,
+                  longitudeDelta: 0.00421,
                 }
               : null
           }
         >
-          <Marker
+        <Marker 
             coordinate={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
             }}
+            >
+          <Icon
+          reverse
+          size={8}
+          name='plug'
+          type="font-awesome"
           />
-          {searchLocation && (
-            <Marker
-              coordinate={{
-                latitude: searchLocation.latitude,
-                longitude: searchLocation.longitude,
-              }}
-            />
-          )}
+        </Marker>
         </MapView>
       )}
       <View style={styles.searchContainer}>
