@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Pressable } from 'react-native';
 import EventTile from '../components/EventTile';
 
-function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const events = [
     { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
     { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
@@ -78,5 +78,3 @@ const styles = StyleSheet.create({
     color: 'black',
   },
 });
-
-export default HomeScreen;

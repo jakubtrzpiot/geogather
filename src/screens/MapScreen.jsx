@@ -6,7 +6,7 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { Icon } from '@rneui/themed';
 import AddEventButton from '../components/AddEventButton';
 
-const MapScreen = () => {
+export default function MapScreen({ navigation }) {
   const [location, setLocation] = useState(null);
   const [searchLocation, setSearchLocation] = useState(null);
 
@@ -105,23 +105,23 @@ const MapScreen = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-          <Pressable
-                style={styles.button}
-                title="GeoGather"
-                onPress={() => navigation.navigate('Map')}
-            >
-                <Text style={styles.text}>Map</Text>
-            </Pressable>
-            <Pressable
-                style={styles.button}
-                onPress={() => navigation.navigate('Profile')}
-            >
-                <Text style={styles.text}>Profile</Text>
-            </Pressable>
+        <Pressable
+          style={styles.button}
+          title="GeoGather"
+          onPress={() => navigation.navigate('Map')}
+        >
+          <Text style={styles.text}>Map</Text>
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('Profile')}
+        >
+          <Text style={styles.text}>Profile</Text>
+        </Pressable>
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -145,31 +145,29 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   buttonContainer: {
-      position: 'absolute',
-      bottom: 0,
-      flexDirection: 'row',
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      width: '100%',
-      elevation: 3,
-      padding: 10,
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    width: '100%',
+    elevation: 3,
+    padding: 10,
   },
   button: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingVertical: 12,
-      paddingHorizontal: 32,
-      borderRadius: 4,
-      elevation: 3,
-      backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 4,
+    elevation: 3,
+    backgroundColor: 'white',
   },
   text: {
-      fontSize: 16,
-      lineHeight: 21,
-      fontWeight: 'bold',
-      letterSpacing: 0.25,
-      color: 'black',
-    },
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: 'black',
+  },
 });
-
-export default MapScreen;

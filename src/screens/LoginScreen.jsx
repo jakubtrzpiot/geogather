@@ -1,16 +1,53 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { storeUserData } from '../api/Users';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
+
+  const clearInputs = () => {
+    setEmail('');
+    setPassword('');
+  };
 
   const handleLogin = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => setError(error.message));
+    if (!email || !password) {
+      setError('Please fill in all fields');
+    } else if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setError('Please enter a valid email');
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+          console.log('User logged in!');
+          storeUserData({ uid: user.uid, username: user.displayName });
+          navigation.navigate('Home');
+        })
+        .catch(error => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          if (errorCode == 'auth/user-not-found') {
+            setError('User not found');
+          } else if (
+            errorCode == 'auth/wrong-password' ||
+            'auth/invalid-email'
+          ) {
+            setError('Incorrect email or password');
+          }
+        });
+    }
+    clearInputs();
   };
 
   return (
@@ -20,20 +57,20 @@ export default function LoginScreen() {
         placeholder="Email"
         autoCapitalize="none"
         value={email}
-        onChangeText={(email) => setEmail(email)}
+        onChangeText={email => setEmail(email)}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry
         value={password}
-        onChangeText={(password) => setPassword(password)}
+        onChangeText={password => setPassword(password)}
       />
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      {error ? <Text style={styles.error}>{error.message}</Text> : null}
+      <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
         <Text style={styles.signupLink}>
           Don't have an account? Sign up here
         </Text>
