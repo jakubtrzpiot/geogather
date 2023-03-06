@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { Icon } from '@rneui/themed';
+import AddEventButton from '../components/AddEventButton';
 
-const MapSearch = () => {
+const MapScreen = () => {
   const [location, setLocation] = useState(null);
   const [searchLocation, setSearchLocation] = useState(null);
 
@@ -108,6 +109,21 @@ const MapSearch = () => {
           }}
         />
       </View>
+      <View style={styles.buttonContainer}>
+          <Pressable
+                style={styles.button}
+                title="GeoGather"
+                onPress={() => navigation.navigate('Map')}
+            >
+                <Text style={styles.text}>Map</Text>
+            </Pressable>
+            <Pressable
+                style={styles.button}
+                onPress={() => navigation.navigate('Profile')}
+            >
+                <Text style={styles.text}>Profile</Text>
+            </Pressable>
+      </View>
     </View>
   );
 };
@@ -131,8 +147,34 @@ const styles = StyleSheet.create({
     zIndex: 1,
     backgroundColor: 'transparent',
     paddingHorizontal: 20,
-    paddingTop: 40,
+    paddingTop: 10,
   },
+  buttonContainer: {
+      position: 'absolute',
+      bottom: 0,
+      flexDirection: 'row',
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      width: '100%',
+      elevation: 3,
+      padding: 10,
+  },
+  button: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingVertical: 12,
+      paddingHorizontal: 32,
+      borderRadius: 4,
+      elevation: 3,
+      backgroundColor: 'white',
+  },
+  text: {
+      fontSize: 16,
+      lineHeight: 21,
+      fontWeight: 'bold',
+      letterSpacing: 0.25,
+      color: 'black',
+    },
 });
 
-export default MapSearch;
+export default MapScreen;
