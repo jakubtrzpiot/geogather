@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, View, ScrollView, Text, Pressable } from 'react-native';
+import EventTile from '../components/EventTile';
 
 function HomeScreen({ navigation }) {
   const events = [
@@ -18,7 +17,7 @@ function HomeScreen({ navigation }) {
   ];
   return (
     <View style={styles.container}>
-      <ScrollView style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+      <ScrollView style={{ flex: 1, paddingTop: 10, marginBottom: 66 }}>
         {events.map(({ time, date, description, iconName }, i) => (
           <EventTile
             key={i}
@@ -29,7 +28,6 @@ function HomeScreen({ navigation }) {
           />
         ))}
       </ScrollView>
-
       <View style={styles.buttonContainer}>
         <Pressable
           style={styles.button}
@@ -52,16 +50,16 @@ function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'flex-end',
   },
   buttonContainer: {
+    position: 'absolute',
+    bottom: 0,
     flexDirection: 'row',
     backgroundColor: 'white',
     justifyContent: 'center',
     width: '100%',
     elevation: 3,
-    padding: 10,
+    padding: 12,
   },
   button: {
     alignItems: 'center',
