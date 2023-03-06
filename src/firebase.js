@@ -1,10 +1,9 @@
-
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { getFirestore,  collection, addDoc, getDocs, } from 'firebase/database';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDmQDDgAN_jFn_VPUKpHpr1g01b5s_Dh4E',

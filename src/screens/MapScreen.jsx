@@ -51,19 +51,14 @@ const MapSearch = () => {
               : null
           }
         >
-        <Marker 
+          <Marker
             coordinate={{
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
             }}
-            >
-          <Icon
-          reverse
-          size={8}
-          name='plug'
-          type="font-awesome"
-          />
-        </Marker>
+          >
+            <Icon reverse size={8} name="plug" type="font-awesome" />
+          </Marker>
         </MapView>
       )}
       <View style={styles.searchContainer}>
@@ -93,7 +88,7 @@ const MapSearch = () => {
               borderRadius: 20,
               paddingHorizontal: 10,
             },
-            listView: { 
+            listView: {
               backgroundColor: '#fff',
               borderWidth: 1,
               borderColor: '#ccc',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
-import firebase from 'firebase/app';
+import 'react-native-gesture-handler';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignupScreen';
 
@@ -9,7 +9,7 @@ export default function App() {
 
   useEffect(() => {
     // Check if a user is signed in
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         setUser(user);
       } else {

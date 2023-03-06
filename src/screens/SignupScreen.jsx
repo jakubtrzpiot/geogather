@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { auth, createUserWithEmailAndPassword } from '../firebase';
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
   const handleSignUp = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch((error) => setError(error.message));
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {})
+      .catch(error => console.log(error.message));
   };
 
   return (
@@ -22,14 +25,14 @@ export default function SignUpScreen({ navigation }) {
         placeholder="Email"
         autoCapitalize="none"
         value={email}
-        onChangeText={(email) => setEmail(email)}
+        onChangeText={email => setEmail(email)}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry
         value={password}
-        onChangeText={(password) => setPassword(password)}
+        onChangeText={password => setPassword(password)}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
