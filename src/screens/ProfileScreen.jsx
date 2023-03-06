@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button, Icon } from 'react-native-elements';
+import { getUserData } from '../api/Users';
+import { getUser } from 'firebase/auth';
 
 export default function ProfileScreen() {
-  const [name, setName] = useState('John Doe');
-  const [image, setImage] = useState(
-    require('../../assets/default_profile.png'),
-  );
+  const [name, setName] = useState('');
+  const [image, setImage] = useState('');
 
   const handleImageChange = () => {
     // Code to change profile image

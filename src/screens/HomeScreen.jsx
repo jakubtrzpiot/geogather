@@ -1,21 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Pressable } from 'react-native';
 import EventTile from '../components/EventTile';
-import Ionicons from '@expo/vector-icons/Ionicons'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function HomeScreen({ navigation }) {
-  const events = [
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-    { time: '9:00 PM', date: '01.01.2023', description: 'test', iconName: '' },
-  ];
+  const data = require('../data.json');
+  const events = [];
   return (
     <View style={styles.container}>
       <ScrollView style={{ flex: 1, paddingTop: 10, marginBottom: 66 }}>
@@ -53,7 +43,7 @@ export default function HomeScreen({ navigation }) {
           style={styles.button}
           onPress={() => navigation.navigate('Settings')}
         >
-           <Ionicons name="options-sharp" size={30} />
+          <Ionicons name="options-sharp" size={30} />
         </Pressable>
       </View>
     </View>

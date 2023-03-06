@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { StyleSheet, View, Pressable } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -11,19 +11,18 @@ export default function MapScreen({ navigation }) {
   const [searchLocation, setSearchLocation] = useState(null);
 
   useEffect(() => {
-    (async () => {
+    const getLocation = async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
-        return;
       }
-
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-    })();
+    };
+    getLocation();
   }, []);
 
-  const handleSelect = (data, details) => {
+  const handleSelect = details => {
     setSearchLocation({
       latitude: details.geometry.location.lat,
       longitude: details.geometry.location.lng,

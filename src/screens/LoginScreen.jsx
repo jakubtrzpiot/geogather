@@ -13,7 +13,7 @@ import { storeUserData } from '../api/Users';
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   const clearInputs = () => {
     setEmail('');
@@ -37,12 +37,7 @@ export default function LoginScreen({ navigation }) {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
-          if (errorCode == 'auth/user-not-found') {
-            setError('User not found');
-          } else if (
-            errorCode == 'auth/wrong-password' ||
-            'auth/invalid-email'
-          ) {
+          if (errorCode == 'auth/wrong-password' || 'auth/invalid-email') {
             setError('Incorrect email or password');
           }
         });
@@ -66,7 +61,7 @@ export default function LoginScreen({ navigation }) {
         value={password}
         onChangeText={password => setPassword(password)}
       />
-      {error ? <Text style={styles.error}>{error.message}</Text> : null}
+      {error ? <Text style={styles.error}>{error}</Text> : null}
       <TouchableOpacity style={styles.button} onPress={() => handleLogin()}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
