@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, Text, Pressable } from 'react-native';
 import EventTile from '../components/EventTile';
+import Ionicons from '@expo/vector-icons/Ionicons'
 
 function HomeScreen({ navigation }) {
   const events = [
@@ -34,13 +35,25 @@ function HomeScreen({ navigation }) {
           title="GeoGather"
           onPress={() => navigation.navigate('Map')}
         >
-          <Text style={styles.text}>Map</Text>
+          <Ionicons name="earth-sharp" size={30} />
         </Pressable>
         <Pressable
           style={styles.button}
           onPress={() => navigation.navigate('Profile')}
         >
-          <Text style={styles.text}>Profile</Text>
+          <Ionicons name="person-sharp" size={30} />
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('Friends')}
+        >
+          <Ionicons name="chatbubbles-sharp" size={30} />
+        </Pressable>
+        <Pressable
+          style={styles.button}
+          onPress={() => navigation.navigate('Settings')}
+        >
+           <Ionicons name="options-sharp" size={30} />
         </Pressable>
       </View>
     </View>
@@ -65,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingHorizontal: 24,
     borderRadius: 4,
     elevation: 3,
     backgroundColor: 'white',

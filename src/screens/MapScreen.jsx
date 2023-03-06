@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { Icon } from '@rneui/themed';
+import Ionicons from '@expo/vector-icons/Ionicons'
 import AddEventButton from '../components/AddEventButton';
 
 const MapScreen = () => {
@@ -58,12 +58,6 @@ const MapScreen = () => {
             longitude: location.coords.longitude,
             }}
             >
-          <Icon
-          reverse
-          size={8}
-          name='plug'
-          type="font-awesome"
-          />
         </Marker>
         </MapView>
       )}
@@ -115,13 +109,7 @@ const MapScreen = () => {
                 title="GeoGather"
                 onPress={() => navigation.navigate('Map')}
             >
-                <Text style={styles.text}>Map</Text>
-            </Pressable>
-            <Pressable
-                style={styles.button}
-                onPress={() => navigation.navigate('Profile')}
-            >
-                <Text style={styles.text}>Profile</Text>
+                <Ionicons name="reorder-four-sharp" size={40} />
             </Pressable>
       </View>
     </View>
@@ -157,16 +145,13 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       width: '100%',
       elevation: 3,
-      padding: 10,
+      padding: 18,
   },
   button: {
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 12,
-      paddingHorizontal: 32,
-      borderRadius: 4,
-      elevation: 3,
-      backgroundColor: 'white',
+      paddingHorizontal: 24,
+      paddingVerical: 12,
   },
   text: {
       fontSize: 16,
